@@ -1,12 +1,18 @@
 from rest_framework.generics import ListCreateAPIView
 
-from author.serializers import AuthorSerializer
 from .models import Author
+from .serializers import AuthorCreateSerializer, AuthorListSerializer
 
 
 class AuthorView(ListCreateAPIView):
-    authentication_classes = []
-    permission_classes = []
-
     queryset = Author.objects.all()
-    serializer_class = AuthorSerializer
+
+    def get_serializer_class(self):
+        if self.request.method == "GET":
+            return AuthorListSerializer
+
+        if self.request.method == "POST":
+            return AuthorCreateSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(books=[])
