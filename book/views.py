@@ -11,30 +11,6 @@ from .serializers import (
 
 
 class BookView(ListCreateAPIView):
-    # def get_queryset(self):
-    #     queryset = Book.objects.all()
-
-    #     name = self.request.query_params.get("name", None)
-    #     authors = self.request.query_params.get("authors", None)
-    #     publication_year = self.request.query_params.get("publication_year", None)
-    #     edition = self.request.query_params.get("edition", None)
-
-    #     if name:
-    #         name = name.replace("-", " ")
-    #         queryset = queryset.filter(name__icontains=name)
-
-    #     if authors:
-    #         authors = authors.replace("-", " ")
-    #         queryset = queryset.filter(authors__name__icontains=authors)
-
-    #     if publication_year:
-    #         queryset = queryset.filter(publication_year=publication_year)
-
-    #     if edition:
-    #         queryset = queryset.filter(edition=edition)
-
-    #     return queryset
-
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     filter_backends = [DjangoFilterBackend]
