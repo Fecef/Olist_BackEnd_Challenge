@@ -27,7 +27,6 @@ class BookDetailView(RetrieveUpdateDestroyAPIView):
         if self.request.method == "PATCH":
             return BookPatchSerializer
 
-        if self.request.method == "GET":
-            return BookRetrieveSerializer
+        return BookRetrieveSerializer
 
     lookup_url_kwarg = "book_id"
